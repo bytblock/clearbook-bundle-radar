@@ -1,0 +1,119 @@
+# Bundle Radar DEMO_PROOF
+
+**Generated:** 2026-09-20 12:14:41 CDT (box-local / America/Chicago)
+**Mode:** PAPER POC — simulated private OF; not production; no live searcher
+**Aggregator PID:** 545044 · port 8787
+
+## GET /health
+
+```json
+{
+  "ok": true,
+  "mode": "PAPER",
+  "banner": "PAPER POC — simulated private OF; not production; no live searcher",
+  "uptimeSec": 0,
+  "totalBuffered": 1,
+  "byKind": {
+    "hint": 1
+  },
+  "byBuilder": {
+    "flashbots": 1
+  },
+  "eventsLast60s": 1
+}
+```
+
+## GET /events?limit=10
+
+```json
+{
+  "mode": "PAPER",
+  "banner": "PAPER POC — simulated private OF; not production; no live searcher",
+  "count": 10,
+  "events": [
+    {
+      "id": "sim_mua2tkm1_43ac3e12",
+      "source": "simAdapter",
+      "builder": "rsync",
+      "txHashes": [
+        "0x26d97d3f90f600b5648a73aaa69b66046ce0d465dbbad35ee0313fdd096394a5",
+        "0xd7a4d0b65371eda2bd176695a6191b9f6eecacfed756ff10835d119d2f2f435a",
+        "0x31d1bee395280293087874baee21e7a16a6a0e0600e5637146305f6764bf6235"
+      ],
+      "valueEth": 0.077235,
+      "gas": 143292,
+      "receivedAt": "2026-09-20T17:14:40.921Z",
+      "kind": "simulated",
+      "paperScore": 0.007227,
+      "label": "PAPER simulated private-bundle-like · builder=rsync · NOT live OF",
+      "raw": {
+        "paper": true,
+        "note": "Synthetic event for architecture proof. No private OF access."
+      }
+    },
+    {
+      "id": "sim_mua2tjcj_e6d697dc",
+      "source": "simAdapter",
+      "builder": "titan",
+      "txHashes": [
+        "0xb5e21fb42a6a79cb5c87795a0743e1fddf594bb46ee0570c2a742140cfee774e",
+        "0x2826de707a99a950d99e40c272c9547038c50a379b2dff6b0d25ccc641916413",
+        "0x681dba7cc6cc3c3de4e7064d2d1d806a22071b9194449128632127d2dd4317dc",
+        "0xe563ad8559c15c58ddba7a5bd4818d04399841bd3a9ea7ba7cbc1eb9e3ea2ce1"
+      ],
+      "valueEth": 0.62237,
+      "gas": 232903,
+      "receivedAt": "2026-09-20T17:14:39.283Z",
+      "kind": "simulated",
+      "paperScore": 0.020805,
+      "label": "PAPER simulated private-bundle-like · builder=titan · NOT live OF",
+      "raw": {
+        "paper": true,
+        "note": "Synthetic event for architecture proof. No private OF access."
+      }
+    },
+    {
+      "id": "hint_mua2tid6_f0be0b89",
+      "source": "mevShareStubAdapter",
+      "builder": "flashbots",
+      "txHashes": [
+        "0xa4da73b7ce83f45c363975311ca4aee85bb75b7b385d99aa734a62d7734ce57c"
+      ],
+      "receivedAt": "2026-09-20T17:14:38.010Z",
+      "kind": "hint",
+      "paperScore": 0.002418,
+      "label": "HINT placeholder · unavailable · SKIP_MEV_SHARE=1 or tryLive=false",
+      "raw": {
+        "paper": true,
+        "unavailable": true,
+        "reason": "SKIP_MEV_SHARE=1 or tryLive=false",
+        "docs": "https://docs.flashbots.net/flashbots-mev-share/searchers/event-stream",
+        "note": "Does not grant Titan/Beaver private OF. Commercial access required for real private streams."
+      }
+    }
+  ]
+}
+```
+
+## Notes
+
+- `SKIP_MEV_SHARE=1` for deterministic demo (hint placeholders if stub).
+- `ETH_RPC_URL` unset → publicMempoolAdapter no-op (logged).
+- Simulated events labeled `kind=simulated`.
+- This does **not** grant Titan/Beaver private OF.
+
+## Aggregator log (tail)
+
+```
+=== Clearbook Bundle Radar Aggregator ===
+PAPER POC — simulated private OF; not production; no live searcher
+Never stores private keys. No paid builder keys required.
+This does NOT grant Titan/Beaver private OF — commercial access required for real private streams.
+[normalizer] starting 3 adapters (PAPER-first)
+[simAdapter] starting PAPER simulated private-bundle feed (1–2s)
+[publicMempoolAdapter] ETH_RPC_URL unset — no-op (skipping public RPC)
+[mevShareStubAdapter] stub mode — SKIP_MEV_SHARE=1 or tryLive=false; emitting kind=hint placeholders every 5000ms
+[server] HTTP+WS listening on :8787
+[server] PAPER POC — simulated private OF; not production; no live searcher
+[server] GET /health  GET /events  WS /stream
+```

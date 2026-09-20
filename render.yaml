@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: clearbook-bundle-radar
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:aggregator
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: EXECUTION_MODE
+        value: PAPER
+      - key: ALLOW_LIVE
+        value: "false"
+      - key: KILL_SWITCH
+        value: "false"
+      - key: DASHBOARD_DIST
+        value: apps/dashboard/dist

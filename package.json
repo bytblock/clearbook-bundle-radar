@@ -1,0 +1,26 @@
+{
+  "name": "clearbook-bundle-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PAPER POC — Clearbook Bundle Radar EOD + action layer. Simulated private OF. LIVE gated. Not production.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @clearbook/bundle-schema && npm run build -w @clearbook/bundle-aggregator && npm run build -w @clearbook/bundle-dashboard",
+    "build:schema": "npm run build -w @clearbook/bundle-schema",
+    "build:aggregator": "npm run build -w @clearbook/bundle-aggregator",
+    "build:dashboard": "npm run build -w @clearbook/bundle-dashboard",
+    "dev:aggregator": "npm run dev -w @clearbook/bundle-aggregator",
+    "dev:dashboard": "npm run dev -w @clearbook/bundle-dashboard",
+    "start:aggregator": "npm run start -w @clearbook/bundle-aggregator",
+    "demo": "bash ./demo.sh",
+    "proof": "bash ./scripts/proof.sh",
+    "demo:action": "bash ./demo-action.sh"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
